@@ -32,11 +32,12 @@ const Playlist = (props) => {
   const trackElements = tracks.map((track, i) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
-    // console.log(track);
+    // {...track}
+    console.log(track.title);
     return (
       <Track
         key={`${track.title}${track.artist}`}
-        {...track}
+        title={track.title} artist={track.artist} playtime={track.playtime} albumart={track.albumart}  favorite={false}
       />
     );
   });
