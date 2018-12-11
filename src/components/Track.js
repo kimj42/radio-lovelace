@@ -7,20 +7,42 @@ import "./styles/Track.css";
 // See https://wesbos.com/destructuring-objects/
 class Track extends Component {
 // = ({title, artist, playtime, albumart, favorite}) => {
-constructor(props) {
-    super(props)
+  constructor(props) {
+      super(props)
 
-    this.state = {
-      className: "game-item",
-      title: this.props.title,
-      artist: this.props.artist,
-      playtime: this.props.playtime,
-      albumart: this.props.albumart,
-      favorite: this.props.albumart,
+      this.state = {
+        className: "game-item",
+        title: this.props.title,
+        artist: this.props.artist,
+        playtime: this.props.playtime,
+        albumart: this.props.albumart,
+        favorite: this.props.favorite,
+      };
+    }
+
+    markStar = (event) => {
+      console.log("i am in markstar");
+      if (this.state.favorite === false) {
+        this.setState({
+          favorite: true,
+        })
+      }
+      else if (this.state.favorite === true) {
+        this.setState({
+          favorite: false,
+        })
+      };
     };
-  }
+
+    callCallbackInPlaylist = () => {
+      console.log("I am in callCallbackInPlaylist in TRACK");
+
+
+    }
+
 
 render() {
+
   return (
 
     <li className="track">
@@ -29,13 +51,13 @@ render() {
       <input
         type="checkbox"
         className="track--favorite"
-        checked={this.props.favorite} defaultChecked={false}
+        checked={this.state.favorite} onChange={this.markStar}
       />
     <p className="track--artist">{this.state.artist}</p>
       <p className="track--playtime">{this.state.playtime}</p>
       <button
         className="track--control track--to-top"
-        >
+         onClick={this.callCallbackInPlaylist}>
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
